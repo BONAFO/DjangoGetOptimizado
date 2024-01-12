@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<body>
+
+
+
+    
+    <script >
+
+      let query = window.location.href.replace(window.origin, "");
+      query = query.replace(window.location.pathname, "");
+      console.log(query)
+      if(!query.includes("?")){
+        query = "?q=t";
+     }else{
+        query += "&q=t";
+     }
+
+     const url = window.origin + window.location.pathname + query
+
+        $.ajax({
+            url: url,
+            type: "GET",
+            {% comment %} dataType: "json",
+            data: JSON.stringify({payload: payload,}), {% endcomment %}
+            headers: {
+              "X-Requested-With": "XMLHttpRequest",
+              "X-CSRFToken": 'IiKwXrtSxw8s8Dk8sG2ux72yZH38AeWI',  // don't forget to include the 'getCookie' function
+            },
+            success: (data) => {
+              console.log(data);
+            },
+            error: (error) => {
+              console.log(error);
+            }
+          });
+    </script>
+</body>
+</html>
+
