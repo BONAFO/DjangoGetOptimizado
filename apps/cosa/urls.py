@@ -16,8 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from apps.cosa.views import cosaView
+from apps.cosa.views import cosaView, dowload_MODEL_data_view
 
 urlpatterns = [
     path('', cosaView),
+    path('dowload/', dowload_MODEL_data_view),
 ]
